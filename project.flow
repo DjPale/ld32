@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'LD32',
+    version : '0.0.1',
+    author : 'dj_pale',
+
+    app : {
+      name : 'LD32',
+      package : 'com.djpale.ld32',
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+        nape : '*'
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
