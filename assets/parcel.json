@@ -1,0 +1,16 @@
+{
+	"textures" : [
+		{ "id" : "assets/tiles.png" }
+	],
+	"shaders" : [
+	],
+	"fonts" : [
+	],
+	"sounds" : [
+	],
+	"json" : [
+	],
+	"text" : [
+		{ "id" : "assets/map1.tmx" }
+	]
+}

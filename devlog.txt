@@ -1,5 +1,44 @@
 == Approx dev. log ==
 
+= 18.04.15
+
 07:40 - Checked theme and started mindmap
 08:30 - Main idea selected, start setup project
 10:15 - Very basic nape / luxe test program complete
+-- BREAK
+20:10 - Back, reboot to Windows for faster development time, update toolchain
+21:35 - Basic physics explosion / removal of bodies
+-- BREAK
+22:05 - Back
+
+= 19.04.15
+03:30 - Tilemap loading, tile gfx (a bit)
+-- SLEEP
+
+
+
+
+
+== TODO ==
+x Basic nape setup
+x Tile body destruction
+x Explosion when projectile hits ground
+x Cannon positioning
+x Strength
+- HP on player
+x Tile GFX
+x Tiled map import
+- Weapon Paramterization and Selection
+- 2nd player AI
+- Turns
+- HP on tiles?
+- Titlemenu
+- BGM and SFX
+- BG art
+- x levels ....
+- Weapon GFX
+- Particle effects
+- Proper visualization of strength and position
+- Camera follow projectile + player
+- Player Movement
+- moar levels !!

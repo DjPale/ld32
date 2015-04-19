@@ -35,22 +35,23 @@ class Main extends luxe.Game
 
     override function ready()
     {
-        // Luxe.loadJSON('assets/parcel.json', function(json_asset) 
-        //     {
-        //         var preload = new Parcel();
-        //         preload.from_json(json_asset.json);
+        Luxe.loadJSON('assets/parcel.json', function(json_asset) 
+            {
+                var preload = new luxe.Parcel();
+                preload.from_json(json_asset.json);
 
-        //         new ParcelProgress({
-        //             parcel: preload,
-        //             background: new luxe.Color(1, 1, 1, 0.85),
-        //             oncomplete: stage2
-        //             });
+                new luxe.ParcelProgress({
+                    parcel: preload,
+                    background: new luxe.Color(0, 0, 0, 1),
+                    bar: new luxe.Color(1, 1, 1, 1),
+                    oncomplete: load_complete
+                    });
 
-        //         preload.load();
-        //     }
-        // );
+                preload.load();
+            }
+        );
 
-        load_complete(null);
+        // load_complete(null);
     } //ready
 
     override function onkeyup( e:KeyEvent ) 
