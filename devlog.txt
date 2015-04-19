@@ -14,8 +14,11 @@
 = 19.04.15
 03:30 - Tilemap loading, tile gfx (a bit)
 -- SLEEP
-
-
+-- BREAK
+15:55 - Back, updated some tile Gfx
+16:10 - Break again
+-- BREAK
+18:30 - Official give-up :'(
 
 
 

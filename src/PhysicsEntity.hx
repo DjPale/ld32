@@ -1,5 +1,6 @@
 import luxe.Component;
 import luxe.Vector;
+import luxe.Sprite;
 import nape.phys.Body;
 
 class PhysicsEntity extends Component
@@ -11,6 +12,18 @@ class PhysicsEntity extends Component
 		super({name: 'PhysicsEntity'});
 
 		body = _body;
+	}
+
+	public function shiftTexture()
+	{
+		if (entity != null)
+		{
+			var spr = cast(entity,Sprite);
+
+			trace(spr.uv);
+
+			if (spr.uv.y <= 64)	spr.uv.y += 32 * 4;
+		}
 	}
 
 	override function update(dt:Float)

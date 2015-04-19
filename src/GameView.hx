@@ -29,7 +29,14 @@ typedef GunPoint = {
 }
 
 typedef EntityUserData = {
-    entity: luxe.Entity
+    pe: PhysicsEntity
+}
+
+typedef WeaponData = {
+    name: String,
+    radius: Float,
+    strength: Float,
+    idx: Int
 }
 
 class GameView extends State
@@ -48,6 +55,8 @@ class GameView extends State
     var txt_debug : Text;
     var txt_info : Text;
 
+    var weapons : Array<WeaponData>;
+
     var PROJECTILE : CbType;
     var GROUND : CbType;
     var PLAYER : CbType;
@@ -65,6 +74,11 @@ class GameView extends State
         GROUND = new CbType();
         PROJECTILE = new CbType();
         PLAYER = new CbType();
+
+        weapons = [
+            { name:'Explosive Cod (Sprængt Torsk)', radius: 50, strength: 5, idx: 0 },
+            { name:'Flower Pot', radius: 70, strength: 3, idx: 1 }            
+        ];
 	}
 
 	override function onenabled<T>(ignored:T)
@@ -206,12 +220,22 @@ class GameView extends State
                         depth: -1
                         });
 
-                    spr.add(new PhysicsEntity(b));
+                    var pe = spr.add(new PhysicsEntity(b));
 
-                    b.userData.entity = spr;
+                    b.userData.pe = pe;
                 }
             }
         }
+    }
+
+    function get_random_weapon() : WeaponData
+    {
+        var r = Luxe.utils.random.int(0, weapons.length);
+        var w = weapons[r];
+
+        txt_info.text = 'Weapon: ' + w.name;
+
+        return w;
     }
 
     function gen_projectile(pos:Vector)
@@ -224,17 +248,19 @@ class GameView extends State
 
         // drawer.add(bullet_body);
 
+        var w = get_random_weapon();
+
         var spr = new Sprite({
             name_unique: true,
             pos: new Vector(pos.x, pos.y),
             texture: Luxe.resources.find_texture('assets/tiles.png'),
-            uv: new luxe.Rectangle(0, 64, 64, 64),
+            uv: new luxe.Rectangle(w.idx * 64, 64, 64, 64),
             size: new Vector(64, 64)
             });
 
-        spr.add(new PhysicsEntity(bullet_body));
+        var pe = spr.add(new PhysicsEntity(bullet_body));
 
-        bullet_body.userData.entity = spr;
+        bullet_body.userData.pe = pe;
 
         bullet_body.applyImpulse(Vec2.weak(p_gunpoint.str.x * FORCE_MULT, p_gunpoint.str.y * FORCE_MULT));
         bullet_body.applyAngularImpulse(90);
@@ -264,6 +290,10 @@ class GameView extends State
             }
             else
             {
+                if (b.userData.pe != null)
+                {
+                    b.userData.pe.shiftTexture();
+                }
                 awake_body(b);
                 explosion(b);
             }
@@ -286,9 +316,9 @@ class GameView extends State
 
     inline function destroy_body(b:Body)
     {
-        if (b.userData.entity != null)
+        if (b.userData.pe != null)
         {
-            b.userData.entity.destroy();
+            b.userData.pe.entity.destroy();
         }
 
         drawer.remove(b);
